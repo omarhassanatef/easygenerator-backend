@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { PasswordPolicy } from "@shared/decorators/password-policy.decorator";
 
@@ -8,6 +8,7 @@ export class RegisterDto {
     description: "The name of the user",
   })
   @IsString()
+  @MinLength(3, { message: "Name must be at least 3 characters long" })
   @IsNotEmpty()
   name: string;
 
