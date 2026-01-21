@@ -1,9 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { PasswordPolicy } from "@shared/decorators/password-policy.decorator";
 
 export class RegisterDto {
   @ApiProperty({
-    example: "John Doe",
+    example: "omar hassan",
     description: "The name of the user",
   })
   @IsString()
@@ -11,7 +12,7 @@ export class RegisterDto {
   name: string;
 
   @ApiProperty({
-    example: "john.doe@example.com",
+    example: "omar.hassan@example.com",
     description: "The email address of the user",
   })
   @IsEmail()
@@ -20,11 +21,12 @@ export class RegisterDto {
 
   @ApiProperty({
     example: "SecurePassword123!",
-    description: "The password for the user account (minimum 6 characters)",
-    minLength: 6,
+    description: "Password must meet complexity requirements (8-20 chars, uppercase, number, letter)",
+    minLength: 8,
+    maxLength: 20,
   })
   @IsString()
-  @MinLength(6)
+  @PasswordPolicy()
   @IsNotEmpty()
   password: string;
 }
