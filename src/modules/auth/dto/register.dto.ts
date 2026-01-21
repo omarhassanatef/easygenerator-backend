@@ -22,7 +22,8 @@ export class RegisterDto {
 
   @ApiProperty({
     example: "SecurePassword123!",
-    description: "Password must meet complexity requirements (8-20 chars, uppercase, number, letter)",
+    description:
+      "Password must meet complexity requirements (8-20 chars, uppercase, number, letter)",
     minLength: 8,
     maxLength: 20,
   })
